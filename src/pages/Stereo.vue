@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { beep, logSession, records, todayStr } from '../store'
+import { beep, speak, logSession, records, todayStr } from '../store'
 import ExplainCard from '../components/ExplainCard.vue'
 
 const W = 760
@@ -44,12 +44,18 @@ let holdInt = null
 function startHold() {
   clearInterval(holdInt)
   holdLeft.value = 20
+  beep(660, 0.15)
+  speak('保持立體感 20 秒')
   holdInt = setInterval(() => {
     holdLeft.value--
+    if (holdLeft.value > 0 && holdLeft.value <= 3) {
+      beep(520, 0.08, 0.18) // 最後三秒滴答提示
+    }
     if (holdLeft.value <= 0) {
       clearInterval(holdInt)
       beep(880, 0.15)
       setTimeout(() => beep(1100, 0.2), 160)
+      speak('很好，眨眨眼休息一下')
     }
   }, 1000)
 }
@@ -292,7 +298,6 @@ onMounted(newImage)
       </div>
       <label><input type="checkbox" v-model="showGuide" @change="newImage()" /> 輔助點</label>
       <button class="primary" @click="newImage">🔄 換一張</button>
-      <button :disabled="holdLeft > 0" @click="startHold">⏱ 保持融像 20 秒</button>
       <button @click="showHelp = !showHelp">{{ showHelp ? '收合教學' : '📖 怎麼看？' }}</button>
     </div>
 
@@ -312,14 +317,20 @@ onMounted(newImage)
       <canvas ref="canvas" :width="W" :height="H"></canvas>
     </div>
 
+    <div class="hold-bar">
+      <button v-if="holdLeft === 0" class="hold-btn" @click="startHold">
+        ⏱ 保持融像 20 秒
+      </button>
+      <div v-else class="hold-count">
+        ✨ 保持立體感 <span class="hold-num">{{ holdLeft }}</span> 秒——維持融像才是放鬆的關鍵
+      </div>
+    </div>
+
     <div class="controls">
       <label>你看到什麼形狀？</label>
       <button v-for="o in options" :key="o.id" @click="guess(o)">{{ o.emoji }} {{ o.name }}</button>
       <span v-if="feedback" :style="{ color: feedback.correct ? 'var(--good)' : 'var(--bad)', fontWeight: 700 }">
         {{ feedback.correct ? '✅ 正確！你成功對焦了' : `❌ 答案是「${feedback.name}」，再試一次` }}
-      </span>
-      <span v-if="holdLeft > 0" style="color: var(--accent); font-weight: 700">
-        ✨ 繼續保持立體感 {{ holdLeft }} 秒——維持融像才是放鬆的關鍵
       </span>
     </div>
 
@@ -336,3 +347,34 @@ onMounted(newImage)
     </div>
   </div>
 </template>
+
+<style scoped>
+.hold-bar {
+  margin: 14px 0;
+  display: flex;
+  justify-content: center;
+}
+.hold-btn {
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 14px 44px;
+  background: var(--accent);
+  color: #1a1508;
+  border: none;
+  border-radius: 12px;
+}
+.hold-btn:hover { filter: brightness(1.1); }
+.hold-count {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--bg-card);
+  border: 1px solid var(--accent-soft);
+  border-radius: 12px;
+  padding: 14px 28px;
+}
+.hold-num {
+  font-size: 1.6rem;
+  font-variant-numeric: tabular-nums;
+}
+</style>
