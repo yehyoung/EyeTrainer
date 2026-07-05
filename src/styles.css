@@ -1,0 +1,145 @@
+/* 深色低藍光主題 */
+:root {
+  --bg: #14120e;
+  --bg-card: #1e1b15;
+  --bg-soft: #26221a;
+  --border: #3a342a;
+  --text: #e8e0d0;
+  --text-dim: #a89e88;
+  --accent: #e8b45a;      /* 琥珀主色（低藍光） */
+  --accent-soft: #8a6d35;
+  --good: #9ec87a;
+  --bad: #d98a6a;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+#app { min-height: 100vh; display: flex; flex-direction: column; }
+
+a { color: var(--accent); text-decoration: none; }
+
+/* ---- 導覽列 ---- */
+.nav {
+  display: flex; align-items: center; gap: 4px;
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  position: sticky; top: 0; z-index: 10;
+}
+.nav .brand { font-size: 1.15rem; font-weight: 700; margin-right: 16px; color: var(--accent); }
+.nav a.link {
+  padding: 6px 12px; border-radius: 8px; color: var(--text-dim); font-size: 0.95rem;
+}
+.nav a.link:hover { background: var(--bg-soft); color: var(--text); }
+.nav a.router-link-active:not(.brand) { background: var(--bg-soft); color: var(--accent); }
+
+.page { flex: 1; width: 100%; max-width: 980px; margin: 0 auto; padding: 24px 20px 48px; }
+
+h1 { font-size: 1.5rem; margin-bottom: 4px; color: var(--accent); }
+h2 { font-size: 1.15rem; margin: 20px 0 8px; }
+p.desc { color: var(--text-dim); margin-bottom: 16px; }
+
+/* ---- 卡片 ---- */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 18px; display: block; color: var(--text); transition: border-color 0.15s, transform 0.15s;
+}
+a.card:hover { border-color: var(--accent-soft); transform: translateY(-2px); }
+.card .icon { font-size: 1.8rem; }
+.card h3 { margin: 6px 0 4px; color: var(--accent); font-size: 1.05rem; }
+.card p { color: var(--text-dim); font-size: 0.88rem; }
+
+/* ---- 控制列 ---- */
+.controls {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 16px; margin: 14px 0;
+}
+.controls label { color: var(--text-dim); font-size: 0.9rem; }
+select, button {
+  background: var(--bg-soft); color: var(--text); border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px 14px; font-size: 0.95rem; cursor: pointer;
+  font-family: inherit;
+}
+select:hover, button:hover { border-color: var(--accent-soft); }
+button.primary { background: var(--accent); color: #1a1508; font-weight: 700; border: none; }
+button.primary:hover { filter: brightness(1.1); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.seg button { border: none; border-radius: 0; background: transparent; }
+.seg button.on { background: var(--accent); color: #1a1508; font-weight: 700; }
+
+/* ---- 訓練畫布 ---- */
+.stage {
+  position: relative; background: #0d0c09; border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.stage canvas { display: block; max-width: 100%; height: auto; }
+.stage .overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+  background: rgba(13, 12, 9, 0.82); text-align: center; padding: 20px;
+}
+.timer-chip {
+  position: absolute; top: 10px; right: 12px; background: rgba(30, 27, 21, 0.85);
+  border: 1px solid var(--border); border-radius: 20px; padding: 3px 14px;
+  font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 700;
+}
+
+/* ---- 提示區 ---- */
+.hint {
+  background: var(--bg-card); border-left: 3px solid var(--accent-soft);
+  border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 12px 0;
+  color: var(--text-dim); font-size: 0.9rem;
+}
+.warn {
+  background: #2a1d15; border-left: 3px solid var(--bad);
+  border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 12px 0;
+  color: #dcb9a5; font-size: 0.9rem;
+}
+
+/* ---- 頁尾 ---- */
+.footer {
+  border-top: 1px solid var(--border); padding: 14px 20px; text-align: center;
+  color: var(--text-dim); font-size: 0.78rem; background: var(--bg-card);
+}
+
+/* ---- 安全問卷 Modal ---- */
+.modal-mask {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7);
+  display: flex; align-items: center; justify-content: center; z-index: 100; padding: 20px;
+}
+.modal {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  max-width: 480px; width: 100%; padding: 26px;
+}
+.modal h2 { margin-top: 0; color: var(--accent); }
+.modal .opts { display: flex; flex-direction: column; gap: 10px; margin: 18px 0; }
+.modal .opts button { text-align: left; padding: 12px 16px; }
+
+/* ---- 統計 ---- */
+.stats { display: flex; gap: 14px; flex-wrap: wrap; margin: 14px 0; }
+.stat {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 14px 20px; min-width: 130px;
+}
+.stat .num { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+.stat .lbl { color: var(--text-dim); font-size: 0.85rem; }
+
+table.rec { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+table.rec th, table.rec td { padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+table.rec th { color: var(--text-dim); font-weight: 500; }
+
+.big-guide { font-size: 2.2rem; font-weight: 700; color: var(--accent); }
