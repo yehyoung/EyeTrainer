@@ -45,13 +45,12 @@ function startHold() {
   clearInterval(holdInt)
   holdLeft.value = 20
   beep(660, 0.15)
-  speak('保持立體感 20 秒')
+  speak('保持立體感，20')
   holdInt = setInterval(() => {
     holdLeft.value--
-    if (holdLeft.value > 0 && holdLeft.value <= 3) {
-      beep(520, 0.08, 0.18) // 最後三秒滴答提示
-    }
-    if (holdLeft.value <= 0) {
+    if (holdLeft.value > 0) {
+      speak(String(holdLeft.value)) // 語音倒數 19、18、17…
+    } else {
       clearInterval(holdInt)
       beep(880, 0.15)
       setTimeout(() => beep(1100, 0.2), 160)
@@ -351,13 +350,12 @@ onMounted(newImage)
 <style scoped>
 .hold-bar {
   margin: 14px 0;
-  display: flex;
-  justify-content: center;
 }
 .hold-btn {
-  font-size: 1.25rem;
+  width: 100%;
+  font-size: 1.4rem;
   font-weight: 700;
-  padding: 14px 44px;
+  padding: 20px 0;
   background: var(--accent);
   color: #1a1508;
   border: none;
@@ -365,16 +363,18 @@ onMounted(newImage)
 }
 .hold-btn:hover { filter: brightness(1.1); }
 .hold-count {
-  font-size: 1.15rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--accent);
   background: var(--bg-card);
   border: 1px solid var(--accent-soft);
   border-radius: 12px;
-  padding: 14px 28px;
+  padding: 18px 0;
 }
 .hold-num {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-variant-numeric: tabular-nums;
 }
 </style>
