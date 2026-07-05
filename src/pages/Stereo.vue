@@ -292,6 +292,7 @@ onMounted(newImage)
       </div>
       <label><input type="checkbox" v-model="showGuide" @change="newImage()" /> 輔助點</label>
       <button class="primary" @click="newImage">🔄 換一張</button>
+      <button :disabled="holdLeft > 0" @click="startHold">⏱ 保持融像 20 秒</button>
       <button @click="showHelp = !showHelp">{{ showHelp ? '收合教學' : '📖 怎麼看？' }}</button>
     </div>
 
