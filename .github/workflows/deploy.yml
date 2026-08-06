@@ -6,15 +6,18 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
-# 排隊等待，不可中斷進行中的部署
+# 依 GitHub Pages 官方範本：排隊等待、不可中斷進行中的部署。
+# 中途取消會讓 Pages 部署卡在未完成狀態，後續部署全部回報 "Deployment cancelled"。
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,18 +27,19 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
 
-      # 直接把 dist/ 發布到 gh-pages 分支。
-      # 不使用 actions/deploy-pages：該路徑依賴 Pages 部署 API，曾多次逾時卡住。
-      - name: Publish dist to gh-pages branch
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          touch dist/.nojekyll
-          cd dist
-          git init -b gh-pages
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Deploy ${GITHUB_SHA}"
-          git push --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
