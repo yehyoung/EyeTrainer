@@ -10,9 +10,11 @@ permissions:
   pages: write
   id-token: write
 
+# 依 GitHub Pages 官方範本：排隊等待、不可中斷進行中的部署。
+# 中途取消會讓 Pages 部署卡在未完成狀態，後續部署全部回報 "Deployment cancelled"。
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
