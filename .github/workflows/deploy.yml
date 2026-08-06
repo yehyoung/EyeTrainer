@@ -43,3 +43,6 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # 此 repo 的 Pages 部署常需 ~10 分鐘，剛好卡在預設上限；放寬到 20 分鐘
+          timeout: 1200000
