@@ -9,6 +9,8 @@ const MODULE_NAMES = {
   stereo: '🌀 3D 立體圖',
   'relax-blink': '👁️ 節拍眨眼',
   'relax-palm': '🤲 掌心熱敷',
+  isometric: '💪 等長運動',
+  pelvic: '🌸 骨盆底肌',
 }
 
 const totalMinutes = computed(() =>
@@ -68,6 +70,12 @@ function confirmClear() {
           <td>
             <template v-if="r.module === 'stereo'">
               {{ r.extra?.correct ? '✅ 答對' : '❌ 答錯' }}（{{ r.seconds }} 秒）
+            </template>
+            <template v-else-if="r.module === 'isometric' && r.extra?.exercise">
+              {{ r.extra.exercise }} {{ r.extra.hold }}秒 × {{ r.extra.sets }}組（{{ r.seconds }} 秒）
+            </template>
+            <template v-else-if="r.module === 'pelvic' && r.extra?.mode">
+              {{ r.extra.mode }} × {{ r.extra.reps }} 次（{{ r.seconds }} 秒）
             </template>
             <template v-else>{{ r.seconds }} 秒</template>
           </td>

@@ -7,6 +7,8 @@ const routes = [
   { path: '/focus', component: () => import('./pages/Focus.vue') },
   { path: '/stereo', component: () => import('./pages/Stereo.vue') },
   { path: '/relax', component: () => import('./pages/Relax.vue') },
+  { path: '/isometric', component: () => import('./pages/Isometric.vue') },
+  { path: '/pelvic', component: () => import('./pages/Pelvic.vue') },
   { path: '/progress', component: () => import('./pages/Progress.vue') },
   { path: '/about', component: () => import('./pages/About.vue') },
 ]
