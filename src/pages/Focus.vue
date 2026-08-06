@@ -3,6 +3,7 @@ import { ref, computed, watch } from 'vue'
 import { beep, speak } from '../store'
 import { useSession } from '../useSession'
 import ExplainCard from '../components/ExplainCard.vue'
+import imgAccommodation from '../assets/accommodation.webp'
 
 const tab = ref('chart') // chart=對焦調節圖, finger=手指凝視法
 
@@ -55,6 +56,14 @@ function startFinger() {
     <p class="desc">
       睫狀肌像相機的自動對焦：看近時收縮、看遠時放鬆。交替遠近對焦能舒緩緊繃的睫狀肌、改善假性近視與疲勞。
     </p>
+
+    <figure class="diagram">
+      <img :src="imgAccommodation" alt="睫狀肌看近與看遠時的對焦原理示意圖" />
+      <figcaption>
+        看近時<strong>睫狀肌收縮</strong>、水晶體變厚；看遠時<strong>睫狀肌放鬆</strong>、水晶體變薄。
+        長時間盯螢幕等於讓睫狀肌長期維持在左邊的收縮狀態，這正是眼睛痠脹與假性近視的來源。
+      </figcaption>
+    </figure>
 
     <div class="controls">
       <div class="seg">
@@ -183,3 +192,26 @@ function startFinger() {
     </template>
   </div>
 </template>
+
+<style scoped>
+.diagram {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 12px 0;
+  text-align: center;
+}
+.diagram img {
+  width: 100%;
+  max-width: 640px;
+  border-radius: 10px;
+  background: #fff;
+}
+.diagram figcaption {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-top: 10px;
+  text-align: left;
+}
+</style>

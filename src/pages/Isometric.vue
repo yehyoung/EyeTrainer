@@ -2,12 +2,19 @@
 import { ref, computed } from 'vue'
 import { useIntervals } from '../useIntervals'
 import ExplainCard from '../components/ExplainCard.vue'
+import imgWallSquat from '../assets/wall-squat.webp'
+import imgPlank from '../assets/plank.webp'
+import imgChestPress from '../assets/chest-press.webp'
+import imgNeck from '../assets/neck-iso.webp'
+import imgGlute from '../assets/glute.webp'
+import imgGrip from '../assets/grip.webp'
 
 const EXERCISES = [
   {
     id: 'wall-squat',
     name: '靠牆深蹲',
     emoji: '🧱',
+    img: imgWallSquat,
     hold: 120,
     sets: 4,
     rest: 120,
@@ -23,6 +30,7 @@ const EXERCISES = [
     id: 'plank',
     name: '棒式',
     emoji: '🧘',
+    img: imgPlank,
     hold: 30,
     sets: 3,
     rest: 60,
@@ -38,6 +46,7 @@ const EXERCISES = [
     id: 'chest-press',
     name: '掌心互推',
     emoji: '🙏',
+    img: imgChestPress,
     hold: 30,
     sets: 3,
     rest: 30,
@@ -52,6 +61,7 @@ const EXERCISES = [
     id: 'neck',
     name: '頸部等長',
     emoji: '🙆',
+    img: imgNeck,
     hold: 15,
     sets: 4,
     rest: 15,
@@ -67,6 +77,7 @@ const EXERCISES = [
     id: 'glute',
     name: '臀部收縮',
     emoji: '🪑',
+    img: imgGlute,
     hold: 20,
     sets: 4,
     rest: 20,
@@ -81,6 +92,7 @@ const EXERCISES = [
     id: 'grip',
     name: '握力維持',
     emoji: '✊',
+    img: imgGrip,
     hold: 120,
     sets: 4,
     rest: 60,
@@ -256,9 +268,12 @@ const phaseColor = computed(() => {
 
       <div class="side">
         <h2 style="margin-top: 0">{{ ex.emoji }} {{ ex.name }}</h2>
-        <ol class="howto">
-          <li v-for="(s, i) in ex.steps" :key="i">{{ s }}</li>
-        </ol>
+        <div class="howto-row">
+          <img :src="ex.img" :alt="`${ex.name}姿勢示意圖`" class="pose" />
+          <ol class="howto">
+            <li v-for="(s, i) in ex.steps" :key="i">{{ s }}</li>
+          </ol>
+        </div>
         <div class="hint" style="margin-bottom: 0">💡 {{ ex.note }}</div>
       </div>
     </div>
@@ -295,7 +310,21 @@ const phaseColor = computed(() => {
 }
 .phase { color: var(--text-dim); font-size: 0.9rem; margin-top: 8px; }
 .side { flex: 1; min-width: 260px; }
-.howto { margin: 8px 0 12px 22px; color: var(--text-dim); font-size: 0.92rem; }
+.howto-row { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+.pose {
+  width: 210px;
+  flex: none;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+}
+.howto {
+  flex: 1;
+  min-width: 220px;
+  margin: 4px 0 12px 20px;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+}
 .howto li { margin: 5px 0; }
 .breathe {
   text-align: center; font-size: 1.15rem; font-weight: 700;

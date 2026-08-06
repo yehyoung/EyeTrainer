@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { useIntervals } from '../useIntervals'
 import ExplainCard from '../components/ExplainCard.vue'
+import imgAnatomy from '../assets/pelvic-anatomy.webp'
 
 const MODES = [
   { id: 'slow', name: '慢縮（耐力）', desc: '收緊並維持數秒後完全放鬆，訓練骨盆底肌的耐力與支撐力。' },
@@ -129,6 +130,21 @@ const orbStyle = computed(() => {
       ]"
     />
 
+    <div class="anatomy">
+      <img :src="imgAnatomy" alt="骨盆底肌位置與收縮方向示意圖" />
+      <div>
+        <h2 style="margin-top: 0">骨盆底肌在哪裡？</h2>
+        <p style="color: var(--text-dim); font-size: 0.93rem">
+          它像一張<strong>吊床</strong>橫跨骨盆底部，從下方托住膀胱與直腸（女性還有子宮），
+          並與尿道、肛門括約肌一起控制排泄。
+        </p>
+        <p style="color: var(--text-dim); font-size: 0.93rem">
+          訓練時要做的就是圖中那個<strong>向上收提</strong>的動作——想像忍住排氣、同時把會陰往身體內上方提起。
+          腹部、大腿與臀部都不該用力，把手放在肚子上可以確認腹部沒有繃緊。
+        </p>
+      </div>
+    </div>
+
     <div class="warn">
       ⚠️ 請勿以「中斷尿流」當作日常練習方式（偶爾確認肌肉位置可以，反覆練習會造成排尿不完全與感染風險）。
       放鬆與收縮同樣重要——過度訓練可能造成骨盆底肌過度緊繃，反而引起疼痛、頻尿或排便困難。
@@ -203,6 +219,27 @@ const orbStyle = computed(() => {
 </template>
 
 <style scoped>
+.anatomy {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin: 12px 0;
+}
+.anatomy img {
+  width: 260px;
+  flex: none;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+}
+.anatomy > div { flex: 1; min-width: 260px; }
+.anatomy p { margin: 8px 0; }
+
 .stage-pelvic {
   background: var(--bg-card);
   border: 1px solid var(--border);
