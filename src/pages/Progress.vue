@@ -11,6 +11,7 @@ const MODULE_NAMES = {
   'relax-palm': '🤲 掌心熱敷',
   isometric: '💪 等長運動',
   pelvic: '🌸 骨盆底肌',
+  autonomic: '🫁 自律神經',
 }
 
 const totalMinutes = computed(() =>
@@ -76,6 +77,9 @@ function confirmClear() {
             </template>
             <template v-else-if="r.module === 'pelvic' && r.extra?.mode">
               {{ r.extra.mode }} × {{ r.extra.reps }} 次（{{ r.seconds }} 秒）
+            </template>
+            <template v-else-if="r.module === 'autonomic' && r.extra?.method">
+              {{ r.extra.method }}{{ r.extra.preset ? '・' + r.extra.preset : '' }}（{{ r.seconds }} 秒）
             </template>
             <template v-else>{{ r.seconds }} 秒</template>
           </td>

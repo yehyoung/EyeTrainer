@@ -56,6 +56,11 @@ import { streak, todaySeconds } from '../store'
         <h3>骨盆底肌訓練</h3>
         <p>凱格爾運動節奏引導（慢縮＋快縮），改善漏尿、產後與術後恢復，坐著就能做。</p>
       </router-link>
+      <router-link class="card" to="/autonomic">
+        <div class="icon">🫁</div>
+        <h3>自律神經調節</h3>
+        <p>共振呼吸、4-7-8、生理性嘆息、箱式呼吸、哼鳴與漸進式肌肉放鬆，緩解緊繃、心悸與失眠。</p>
+      </router-link>
     </div>
 
     <h2>📊 紀錄與說明</h2>

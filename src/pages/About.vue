@@ -38,6 +38,15 @@ function resetRisk() {
       兩者都不需器材、不會流汗，適合在護眼休息的空檔一起完成。
     </p>
 
+    <h2>自律神經調節在練什麼？</h2>
+    <p style="color: var(--text-dim)">
+      自律神經由<strong>交感</strong>（油門）與<strong>副交感</strong>（煞車）組成，久坐與長期壓力會讓交感持續過度活躍，
+      表現為心悸、胸悶、肩頸緊繃、腸胃不適與睡不好。呼吸是少數能被意識直接控制、又能立即影響自律神經的功能：
+      吐氣時心跳自然變慢，把呼吸放慢到每分鐘約 6 次時，心跳與呼吸進入共振、HRV 振幅顯著提升，
+      這是 HRV 生理回饋訓練的核心原理。本站提供共振呼吸、4-7-8、生理性嘆息、箱式呼吸、哼鳴呼吸
+      與漸進式肌肉放鬆六種練習。
+    </p>
+
     <h2>安全注意事項</h2>
     <div class="warn">
       ⚠️ <strong>眼睛訓練</strong>：高度近視（600 度以上）或有視網膜病變、剝離病史者，
@@ -46,7 +55,9 @@ function resetRisk() {
       ⚠️ <strong>等長運動</strong>：維持出力期間血壓會短暫升高，且憋氣（伐氏操作）會使血壓瞬間飆升。
       務必全程正常呼吸；有高血壓、心血管疾病、青光眼或視網膜病變者請先諮詢醫師。<br /><br />
       ⚠️ <strong>骨盆底肌訓練</strong>：請勿反覆以「中斷尿流」作為練習方式。放鬆與收縮同樣重要，
-      過度訓練可能造成骨盆底肌過度緊繃而引起疼痛或排尿困難；有骨盆疼痛或復健需求請諮詢專業人員。
+      過度訓練可能造成骨盆底肌過度緊繃而引起疼痛或排尿困難；有骨盆疼痛或復健需求請諮詢專業人員。<br /><br />
+      ⚠️ <strong>呼吸練習</strong>：出現頭暈、手腳發麻或刺痛代表換氣過度，請立即停止並回到自然呼吸。
+      含屏息的技巧若您懷孕、有心血管疾病、癲癇病史或正在恐慌發作，請縮短或略過屏息段落。
     </div>
 
     <h2>設定</h2>
@@ -73,6 +84,9 @@ function resetRisk() {
       <li><a href="https://health.udn.com/health/story/5977/7352444" target="_blank">元氣網：等長運動比有氧更能降血壓</a></li>
       <li><a href="https://www.nice.org.uk/guidance/ng210/chapter/recommendations" target="_blank">NICE NG210：骨盆底功能障礙的預防與非手術治療指引</a></li>
       <li><a href="https://www.nhsinform.scot/healthy-living/womens-health/middle-years-around-25-to-50-years/pelvic-health/pelvic-floor-muscles/" target="_blank">NHS inform：骨盆底肌訓練方法</a></li>
+      <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5575449/" target="_blank">共振頻率呼吸對 HRV、血壓與情緒的影響</a></li>
+      <li><a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2021.624254/full" target="_blank">Frontiers：各種呼吸技巧對 HRV 的效果比較</a></li>
+      <li><a href="https://tanss.org.tw/qa/" target="_blank">台灣自律神經失調症協會：常見問題</a></li>
     </ul>
 
     <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 16px">
