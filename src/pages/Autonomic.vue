@@ -80,6 +80,58 @@ const METHODS = [
   },
 ]
 
+
+// 生活調整建議（呼吸練習之外，影響自律神經最大的三件事）
+const LIFESTYLE = [
+  {
+    icon: '🥦',
+    title: '飲食',
+    good: [
+      '深綠色蔬菜：青花菜、菠菜、地瓜葉——富含鎂與葉酸，鎂是穩定神經的關鍵礦物質',
+      '深海魚：鮭魚、鯖魚、秋刀魚——Omega-3 攝取與較高的心率變異度相關',
+      '堅果種子：杏仁、腰果、南瓜子，補鎂最方便的零食',
+      '全穀與豆類：血糖上升平緩，避免忽高忽低反覆刺激交感神經',
+      '發酵食品與高纖蔬果：腸道菌相會透過腸腦軸影響情緒與自律神經',
+      '喝足水：脫水本身就會讓心跳加快、交感興奮',
+    ],
+    bad: [
+      '炸雞、鹽酥雞等油炸與高度加工食品：促進發炎，長期不利自律神經',
+      '含糖飲料與精緻甜點：血糖劇烈震盪會引發腎上腺素分泌，造成心悸與疲倦',
+      '過量咖啡因：直接刺激交感神經。一天不超過 2 杯，中午過後不再喝',
+      '酒精：入睡變快，但會明顯降低夜間 HRV 與深層睡眠，隔天更累',
+      '睡前 3 小時內的大餐與宵夜',
+    ],
+  },
+  {
+    icon: '🏃',
+    title: '運動',
+    good: [
+      '中低強度有氧：快走、慢跑、游泳、騎車，每週累積 150 分鐘',
+      '瑜伽、太極、伸展：結合呼吸與緩慢動作，對自律神經的實證特別好',
+      '本站的等長運動與呼吸練習，坐著就能補上一段',
+      '每坐 30–60 分鐘起身活動 2–3 分鐘，別讓身體整天定格',
+    ],
+    bad: [
+      '長期過度的高強度訓練：交感會持續亢奮，HRV 反而下降',
+      '睡前 2 小時內的激烈運動',
+    ],
+  },
+  {
+    icon: '😴',
+    title: '睡眠與作息',
+    good: [
+      '固定起床時間（比固定就寢更重要），假日別差超過 1 小時',
+      '起床後 30 分鐘內曬 10 分鐘自然光，校準生理時鐘',
+      '睡前 1 小時離開螢幕，改用暖色低亮度照明',
+      '睡前溫水泡澡或泡腳 10–15 分鐘',
+    ],
+    bad: [
+      '熬夜與睡眠不足：會直接壓低隔天的心率變異度',
+      '在床上滑手機、追劇、處理公事',
+    ],
+  },
+]
+
 const methodId = ref('resonance')
 const method = computed(() => METHODS.find((m) => m.id === methodId.value))
 const presetIdx = ref(1)
@@ -266,6 +318,31 @@ const phaseColor = computed(() => {
     <div v-if="method.id === 'pmr'" class="hint">
       依序進行 7 個部位：{{ method.groups.join('、') }}——每個部位收緊 5 秒後放鬆 15 秒。
     </div>
+
+    <h2>🌱 生活調整建議</h2>
+    <p class="desc">
+      呼吸練習能立即把交感神經降下來，但要真正改善體質，飲食、運動與睡眠的影響更大。
+      以下是對自律神經影響最明確的幾件事——不必一次做到，先挑一兩項固定下來就會有感。
+    </p>
+
+    <div class="life-grid">
+      <div v-for="g in LIFESTYLE" :key="g.title" class="life-card">
+        <h3>{{ g.icon }} {{ g.title }}</h3>
+        <div class="life-label good">✅ 多做 / 多吃</div>
+        <ul class="good">
+          <li v-for="(t, i) in g.good" :key="i">{{ t }}</li>
+        </ul>
+        <div class="life-label bad">❌ 少做 / 少吃</div>
+        <ul class="bad">
+          <li v-for="(t, i) in g.bad" :key="i">{{ t }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hint">
+      💡 自律神經的恢復通常以「週」為單位——規律比強度重要。若已在服藥或接受治療，
+      請把這些調整當作輔助，不要自行停藥。
+    </div>
   </div>
 </template>
 
@@ -317,4 +394,33 @@ const phaseColor = computed(() => {
   color: var(--text);
 }
 .phase-total { color: var(--text-dim); font-size: 0.92rem; margin-top: 6px; }
+
+.life-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin: 14px 0;
+}
+.life-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+.life-card h3 { margin: 0 0 10px; color: var(--accent); font-size: 1.05rem; }
+.life-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 12px 0 4px;
+}
+.life-label.good { color: var(--good); }
+.life-label.bad { color: var(--bad); }
+.life-card ul {
+  margin: 0 0 0 20px;
+  color: var(--text-dim);
+  font-size: 0.88rem;
+}
+.life-card li { margin: 5px 0; }
+.life-card ul.good li::marker { color: var(--good); }
+.life-card ul.bad li::marker { color: var(--bad); }
 </style>

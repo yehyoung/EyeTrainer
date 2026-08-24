@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useIntervals } from '../useIntervals'
+import { beep, speak } from '../store'
 import ExplainCard from '../components/ExplainCard.vue'
 import imgWallSquat from '../assets/wall-squat.webp'
 import imgPlank from '../assets/plank.webp'
@@ -120,17 +121,50 @@ function pick(e) {
   session.reset()
 }
 
-const session = useIntervals('isometric')
+// 語音倒數：長時間維持時每隔一段報一次剩餘秒數，最後 3 秒逐秒倒數
+const MILESTONES = [90, 60, 50, 40, 30, 20, 10]
+
+function onSecond(step, left) {
+  const first = left >= Math.floor(step.seconds) // 步驟剛開始的那一秒，讓開場語音先講完
+  if (step.kind === 'prep') {
+    if (left <= 3 && left >= 1) {
+      beep(760, 0.09, 0.2)
+      speak(String(left))
+    }
+    return
+  }
+  if (step.kind === 'work') {
+    if (!first && MILESTONES.includes(left)) {
+      beep(560, 0.08, 0.16)
+      speak(`還有 ${left} 秒`)
+    } else if (left <= 3 && left >= 1) {
+      beep(760, 0.09, 0.2)
+      speak(String(left))
+    }
+    return
+  }
+  if (step.kind === 'rest') {
+    if (!first && left === 10) {
+      beep(500, 0.08, 0.16)
+      speak('還有十秒')
+    } else if (left <= 3 && left >= 1) {
+      beep(700, 0.09, 0.2)
+      speak(String(left))
+    }
+  }
+}
+
+const session = useIntervals('isometric', { onSecond })
 
 function buildPlan() {
   const name = ex.value.name
-  const plan = [{ kind: 'prep', label: '準備', seconds: 8, say: `準備${name}，八秒後開始` }]
+  const plan = [{ kind: 'prep', label: '準備', seconds: 8, say: `準備${name}` }]
   for (let i = 1; i <= sets.value; i++) {
     plan.push({
       kind: 'work',
       label: `第 ${i} / ${sets.value} 組 ‧ 用力維持`,
       seconds: hold.value,
-      say: i === 1 ? '開始，持續呼吸不要憋氣' : `第 ${i} 組，開始`,
+      say: i === 1 ? '開始，持續呼吸' : `第 ${i} 組`,
     })
     if (i < sets.value) {
       plan.push({

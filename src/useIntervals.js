@@ -3,7 +3,8 @@
 import { ref, computed, onUnmounted } from 'vue'
 import { beep, speak, logSession } from './store'
 
-export function useIntervals(module) {
+// opts.onSecond(step, secondsLeft)：每當「剩餘整數秒」變動時呼叫一次，供頁面做語音倒數
+export function useIntervals(module, opts = {}) {
   const steps = ref([])
   const index = ref(0)
   const elapsed = ref(0) // 目前步驟已過秒數
@@ -13,6 +14,7 @@ export function useIntervals(module) {
   let last = 0
   let spent = 0 // 本次訓練累計秒數（暫停時不計）
   let meta = {}
+  let lastLeft = null // 上次回報的剩餘秒數，避免同一秒重複播報
 
   const current = computed(() => steps.value[index.value] || null)
 
@@ -64,6 +66,16 @@ export function useIntervals(module) {
       advanced = true
     }
     if (advanced) announce(current.value)
+
+    // 每秒回呼一次（背景分頁被節流而跨越多秒時，只以最新值回報一次）
+    const cur = current.value
+    if (cur) {
+      const l = Math.max(0, Math.ceil(cur.seconds - elapsed.value))
+      if (l !== lastLeft) {
+        lastLeft = l
+        opts.onSecond && opts.onSecond(cur, l)
+      }
+    }
   }
 
   // 傳入 plan 為全新開始；不傳則從暫停處繼續
@@ -75,6 +87,7 @@ export function useIntervals(module) {
       spent = 0
       meta = info
       done.value = false
+      lastLeft = null
     }
     running.value = true
     last = performance.now()
@@ -96,6 +109,7 @@ export function useIntervals(module) {
     elapsed.value = 0
     spent = 0
     done.value = false
+    lastLeft = null
   }
 
   function finish() {
