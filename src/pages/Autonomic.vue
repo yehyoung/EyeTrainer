@@ -11,8 +11,8 @@ const METHODS = [
     emoji: '🌊',
     desc: '以每分鐘約 6 次的節奏均勻呼吸，是提升心率變異度（HRV）與迷走神經張力實證最強的方式。',
     cycle: (s) => [
-      { kind: 'in', label: '吸氣', seconds: s.a, freq: 620 },
-      { kind: 'out', label: '吐氣', seconds: s.b, freq: 440 },
+      { kind: 'in', label: '吸氣', voice: '吸氣', seconds: s.a, freq: 620 },
+      { kind: 'out', label: '吐氣', voice: '吐氣', seconds: s.b, freq: 440 },
     ],
     presets: [
       { name: '入門（7 次/分）', a: 4, b: 4.5 },
@@ -27,9 +27,9 @@ const METHODS = [
     emoji: '🌙',
     desc: '吸 4 秒、屏息 7 秒、吐 8 秒。吐氣遠長於吸氣，能明顯偏向副交感神經。',
     cycle: () => [
-      { kind: 'in', label: '吸氣', seconds: 4, freq: 620 },
-      { kind: 'hold', label: '屏息', seconds: 7, freq: 540 },
-      { kind: 'out', label: '緩緩吐氣', seconds: 8, freq: 440 },
+      { kind: 'in', label: '吸氣', voice: '吸氣', seconds: 4, freq: 620 },
+      { kind: 'hold', label: '屏息', voice: '屏息', seconds: 7, freq: 540 },
+      { kind: 'out', label: '緩緩吐氣', voice: '吐氣', seconds: 8, freq: 440 },
     ],
     note: '睡前躺著做效果最好。屏息若不適，可自行縮短或略過。',
   },
@@ -39,9 +39,10 @@ const METHODS = [
     emoji: '💨',
     desc: '連吸兩口氣再長長吐掉。研究顯示這是最快降低即時焦慮與生理喚起的呼吸法。',
     cycle: () => [
-      { kind: 'in', label: '吸氣', seconds: 2, freq: 620 },
-      { kind: 'in2', label: '再補吸一小口', seconds: 1, freq: 700 },
-      { kind: 'out', label: '長長吐氣', seconds: 6, freq: 440 },
+      { kind: 'in', label: '吸氣', voice: '吸氣', seconds: 2, freq: 620 },
+      { kind: 'in2', label: '再補吸一小口', voice: '再吸', seconds: 1, freq: 700 },
+      { kind: 'out', label: '長長吐氣', voice: '吐氣', seconds: 6, freq: 440 },
+      // 僅 1 秒的短停頓不播報，讓下一次「吸氣」聽起來乾淨
       { kind: 'holdout', label: '停', seconds: 1, freq: 400 },
     ],
     note: '緊張、心悸、上台前做 3～5 次即可，不需要做很久。',
@@ -52,10 +53,10 @@ const METHODS = [
     emoji: '⬜',
     desc: '吸 4、停 4、吐 4、停 4。節奏規律，用於維持冷靜與專注。',
     cycle: () => [
-      { kind: 'in', label: '吸氣', seconds: 4, freq: 620 },
-      { kind: 'hold', label: '屏息', seconds: 4, freq: 540 },
-      { kind: 'out', label: '吐氣', seconds: 4, freq: 440 },
-      { kind: 'holdout', label: '停', seconds: 4, freq: 400 },
+      { kind: 'in', label: '吸氣', voice: '吸氣', seconds: 4, freq: 620 },
+      { kind: 'hold', label: '屏息', voice: '屏息', seconds: 4, freq: 540 },
+      { kind: 'out', label: '吐氣', voice: '吐氣', seconds: 4, freq: 440 },
+      { kind: 'holdout', label: '停', voice: '停', seconds: 4, freq: 400 },
     ],
     note: '軍警與急救人員常用的穩定法，適合工作中隨時做。',
   },
@@ -65,8 +66,8 @@ const METHODS = [
     emoji: '🐝',
     desc: '吸氣後閉嘴發出「嗯——」的哼聲吐氣，靠喉部振動直接刺激迷走神經。',
     cycle: () => [
-      { kind: 'in', label: '吸氣', seconds: 4, freq: 620 },
-      { kind: 'out', label: '哼鳴吐氣（嗯——）', seconds: 8, freq: 300 },
+      { kind: 'in', label: '吸氣', voice: '吸氣', seconds: 4, freq: 620 },
+      { kind: 'out', label: '哼鳴吐氣（嗯——）', voice: '哼鳴吐氣', seconds: 8, freq: 300 },
     ],
     note: '源自瑜伽的蜂鳴式呼吸。感覺胸口與臉部有振動就對了。',
   },
@@ -164,7 +165,8 @@ function buildPlan() {
   const reps = Math.max(1, Math.round((minutes.value * 60) / cycleLen))
   for (let i = 0; i < reps; i++) {
     for (const p of cycle) {
-      plan.push({ ...p, say: i === 0 ? p.label : null })
+      // 每一輪都播報吸氣／吐氣，讓使用者可以閉著眼睛跟著做
+      plan.push({ ...p, say: p.voice || null })
     }
   }
   return plan
@@ -237,7 +239,7 @@ const phaseColor = computed(() => {
       :method="[
         '坐正或躺下，肩頸放鬆，用鼻子吸氣、緩緩吐氣。',
         '把手放在肚子上：吸氣時肚子鼓起、胸口盡量不動，這才是腹式呼吸。',
-        '跟著畫面的圓球呼吸——圓球變大時吸氣、變小時吐氣，不要搶拍。',
+        '跟著語音與圓球呼吸——聽到「吸氣」時圓球變大、「吐氣」時變小，閉上眼睛跟著做也可以。',
         '全程輕柔，不要用力猛吸或刻意加快，感覺舒服比做滿更重要。',
         '每天 5–10 分鐘、持續數週效果最明顯；急性緊張時做「生理性嘆息」3–5 次即可。',
       ]"
