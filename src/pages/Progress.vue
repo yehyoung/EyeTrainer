@@ -14,6 +14,8 @@ const MODULE_NAMES = {
   'dark-periph': '👀 餘光偵測',
   'dark-glare': '💡 眩光恢復',
   isometric: '💪 等長運動',
+  cardio: '🔥 安靜燃脂',
+  'cardio-hrr': '❤️ 心率恢復',
   pelvic: '🌸 骨盆底肌',
   autonomic: '🫁 自律神經',
 }
@@ -81,6 +83,13 @@ function confirmClear() {
             </template>
             <template v-else-if="r.module === 'pelvic' && r.extra?.mode">
               {{ r.extra.mode }} × {{ r.extra.reps }} 次（{{ r.seconds }} 秒）
+            </template>
+            <template v-else-if="r.module === 'cardio' && r.extra?.programme">
+              {{ r.extra.programme }} {{ r.extra.work }}/{{ r.extra.rest }} 秒 ×
+              {{ r.extra.rounds }} 輪（{{ Math.round(r.seconds / 60 * 10) / 10 }} 分）
+            </template>
+            <template v-else-if="r.module === 'cardio-hrr'">
+              {{ r.extra?.hr1 }} → {{ r.extra?.hr2 }}，一分鐘下降 {{ r.extra?.drop }} 下
             </template>
             <template v-else-if="r.module === 'dark-adapt'">
               暗適應 {{ r.extra?.minutes }} 分鐘，最暗看到第 {{ r.extra?.best || '—' }} 格

@@ -48,7 +48,14 @@ function resetRisk() {
       久坐傷害的不只是眼睛。<strong>等長運動</strong>（肌肉出力但關節不動）能在座位或牆邊補足核心與下肢肌力，
       並且是目前實證中降低靜態血壓效果最好的運動形式；<strong>骨盆底肌訓練</strong>（凱格爾運動）
       則強化承托骨盆腔器官的深層肌群，是國際指引列為應力性尿失禁的第一線治療。
-      兩者都不需器材、不會流汗，適合在護眼休息的空檔一起完成。
+      這兩者都不需器材、不會流汗，適合在護眼休息的空檔一起完成。
+    </p>
+    <p style="color: var(--text-dim)">
+      <strong>安靜燃脂</strong>則是另一回事：它是真正的高強度間歇訓練，用來補上久坐族最缺的心肺耐力。
+      心跳拉升靠的是「短時間內徵召大量肌肉」，而不是跳躍——深蹲與弓箭步動用的股四頭肌與臀肌是全身最大的肌群，
+      快速反覆收縮時心臟必須立刻提高輸出，心跳自然竄高，雙腳完全不必離地。
+      這正好解決公寓住戶的兩難：傳到樓下的是跳躍落地的<strong>衝擊音（固體傳音）</strong>，
+      它沿著樓板結構直接傳遞，瑜珈墊只能衰減有限，唯一可靠的做法就是從源頭不產生衝擊。
     </p>
 
     <h2>自律神經調節在練什麼？</h2>
@@ -67,6 +74,10 @@ function resetRisk() {
       飛蚊突然增加、視野缺損、持續頭暈，請立即停止並就醫。<br /><br />
       ⚠️ <strong>等長運動</strong>：維持出力期間血壓會短暫升高，且憋氣（伐氏操作）會使血壓瞬間飆升。
       務必全程正常呼吸；有高血壓、心血管疾病、青光眼或視網膜病變者請先諮詢醫師。<br /><br />
+      ⚠️ <strong>安靜燃脂（高強度間歇）</strong>：本站唯一的高強度項目。有未控制的高血壓、心血管疾病、
+      近期手術、懷孕或膝踝下背舊傷者請先諮詢醫師，並從「深夜零落地」這類低衝擊課表開始。
+      用力時吐氣、不要憋氣；出現胸痛、胸悶、心悸、頭暈、冒冷汗或呼吸困難請立刻停止並就醫。
+      結束後務必原地慢走緩和，不要立刻坐下。<br /><br />
       ⚠️ <strong>骨盆底肌訓練</strong>：請勿反覆以「中斷尿流」作為練習方式。放鬆與收縮同樣重要，
       過度訓練可能造成骨盆底肌過度緊繃而引起疼痛或排尿困難；有骨盆疼痛或復健需求請諮詢專業人員。<br /><br />
       ⚠️ <strong>暗適應與眩光測試</strong>：眩光恢復計時會出現短暫強光，若有視網膜病變、偏頭痛畏光、
@@ -109,6 +120,9 @@ function resetRisk() {
       <li><a href="https://eandv.biomedcentral.com/articles/10.1186/s40662-016-0060-8" target="_blank">Eye and Vision：葉黃素與玉米黃素補充對眩光下視覺表現與眩光恢復的隨機對照試驗</a></li>
       <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11809839/" target="_blank">維生素 A 缺乏與夜盲：視紫質再生障礙的機制與病例</a></li>
       <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10779901/" target="_blank">夜間近視（night myopia）的成因：暗焦點、球面與色差</a></li>
+      <li><a href="https://pubmed.ncbi.nlm.nih.gov/10536127/" target="_blank">Cole et al., NEJM 1999：運動後心率恢復與死亡率（HRR₁ 12 下門檻的出處）</a></li>
+      <li><a href="https://pubmed.ncbi.nlm.nih.gov/8897392/" target="_blank">Tabata et al., 1996：中強度持續訓練與高強度間歇訓練的比較（20/10 間歇的原始研究）</a></li>
+      <li><a href="https://www.acefitness.org/resources/everyone/blog/3791/everything-you-need-to-know-about-tabata-training/" target="_blank">ACE：Tabata 訓練的原始方案與常見誤解</a></li>
     </ul>
 
     <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 16px">

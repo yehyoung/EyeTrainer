@@ -14,6 +14,7 @@ import SafetyModal from './components/SafetyModal.vue'
     <span class="nav-sep"></span>
     <router-link to="/isometric" class="link">等長運動</router-link>
     <router-link to="/pelvic" class="link">骨盆底肌</router-link>
+    <router-link to="/cardio" class="link">安靜燃脂</router-link>
     <router-link to="/autonomic" class="link">自律神經</router-link>
     <span class="nav-sep"></span>
     <router-link to="/progress" class="link">進度</router-link>

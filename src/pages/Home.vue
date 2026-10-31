@@ -56,6 +56,11 @@ import { streak, todaySeconds } from '../store'
         <h3>等長運動</h3>
         <p>靠牆深蹲、棒式、掌心互推等靜態肌力訓練——實證降血壓效果優於有氧與重訓。</p>
       </router-link>
+      <router-link class="card" to="/cardio">
+        <div class="icon">🔥</div>
+        <h3>安靜燃脂</h3>
+        <p>無跳躍高強度間歇：在家幾分鐘就讓心跳飆升、流一身汗，而且樓下聽不到。含心率恢復測量。</p>
+      </router-link>
       <router-link class="card" to="/pelvic">
         <div class="icon">🌸</div>
         <h3>骨盆底肌訓練</h3>
