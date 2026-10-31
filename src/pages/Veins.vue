@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { useIntervals } from '../useIntervals'
 import { beep, speak } from '../store'
 import ExplainCard from '../components/ExplainCard.vue'
+import PoseImage from '../components/PoseImage.vue'
 import imgPump from '../assets/vein-pump.webp'
 import imgAnkle from '../assets/ankle-pump.webp'
 import imgDesk from '../assets/desk-pump.webp'
@@ -356,7 +357,11 @@ const REDFLAGS = [
     />
 
     <figure class="fig">
-      <img :src="imgPump" alt="小腿肌肉泵與靜脈瓣：肌肉收縮把血液往上推，瓣膜關不緊時血液逆流" />
+      <PoseImage
+        :src="imgPump"
+        alt="小腿肌肉泵與靜脈瓣：肌肉收縮把血液往上推，瓣膜關不緊時血液逆流"
+        :max="620"
+      />
       <figcaption>
         左：小腿肌肉收縮時瓣膜打開、血液被往上擠。右：瓣膜關不緊時血液往下逆流，靜脈被撐大變彎曲。
       </figcaption>
@@ -441,7 +446,7 @@ const REDFLAGS = [
           <span class="where">{{ ex.where }}</span>
         </div>
         <div class="side-body">
-          <img :src="ex.img" :alt="`${ex.name}動作示意圖`" class="pose" />
+          <PoseImage :src="ex.img" :alt="`${ex.name}動作示意圖`" :max="340" class="pose" />
           <ol class="howto">
             <li v-for="(s, i) in ex.steps" :key="i">{{ s }}</li>
           </ol>
@@ -496,12 +501,7 @@ const REDFLAGS = [
   padding: 16px;
   text-align: center;
 }
-.fig img {
-  max-width: 560px;
-  width: 100%;
-  border-radius: 10px;
-  background: #fff;
-}
+.fig :deep(.pose-img) { margin: 0 auto; }
 .fig figcaption {
   color: var(--text-dim);
   font-size: 0.88rem;
@@ -538,10 +538,7 @@ const REDFLAGS = [
   border: 1px solid var(--border); border-radius: 20px; padding: 2px 10px;
 }
 .side-body { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; margin-top: 10px; }
-.pose {
-  width: 200px; flex: none;
-  border-radius: 10px; background: #fff; border: 1px solid var(--border);
-}
+.pose { width: 340px; max-width: 100%; flex: none; }
 .howto {
   flex: 1; min-width: 220px;
   margin: 2px 0 10px 20px;

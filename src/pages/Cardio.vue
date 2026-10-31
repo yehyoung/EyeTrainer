@@ -3,6 +3,7 @@ import { ref, computed, onUnmounted } from 'vue'
 import { useIntervals } from '../useIntervals'
 import { beep, speak, logSession } from '../store'
 import ExplainCard from '../components/ExplainCard.vue'
+import PoseImage from '../components/PoseImage.vue'
 import imgMarch from '../assets/march.webp'
 import imgHip from '../assets/hip.webp'
 import imgSlowSquat from '../assets/slowsquat.webp'
@@ -484,7 +485,7 @@ onUnmounted(() => clearInterval(hrrTimer))
         </div>
         <h2 style="margin-top: 4px">{{ move.emoji }} {{ move.name }}</h2>
         <div class="side-body">
-          <img :src="IMG[moveId]" :alt="`${move.name}動作示意圖`" class="pose" />
+          <PoseImage :src="IMG[moveId]" :alt="`${move.name}動作示意圖`" :max="340" class="pose" />
           <ol class="howto">
             <li v-for="(s, i) in move.steps" :key="i">{{ s }}</li>
           </ol>
@@ -528,11 +529,11 @@ onUnmounted(() => clearInterval(hrrTimer))
 
     <h2>🗂️ 動作圖鑑</h2>
     <p class="desc" style="margin-top: 0">
-      開始前先掃一遍，訓練中就不用停下來看文字。紅點是心跳拉升的力道。
+      開始前先掃一遍，訓練中就不用停下來看文字。紅點是心跳拉升的力道。<strong>點任何一張圖可以放大看清楚標註</strong>。
     </p>
     <div class="gallery">
       <figure v-for="(m, id) in MOVES" :key="id" class="g-card">
-        <img :src="IMG[id]" :alt="`${m.name}動作示意圖`" loading="lazy" />
+        <PoseImage :src="IMG[id]" :alt="`${m.name}動作示意圖`" :max="420" lazy />
         <figcaption>
           <strong>{{ m.emoji }} {{ m.name }}</strong>
           <span class="hr-dots">
@@ -650,10 +651,7 @@ onUnmounted(() => clearInterval(hrrTimer))
 .side-body {
   display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; margin-top: 8px;
 }
-.pose {
-  width: 200px; flex: none;
-  border-radius: 10px; background: #fff; border: 1px solid var(--border);
-}
+.pose { width: 340px; max-width: 100%; flex: none; }
 .howto {
   flex: 1; min-width: 220px;
   margin: 0 0 12px 20px;
@@ -662,7 +660,7 @@ onUnmounted(() => clearInterval(hrrTimer))
 }
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 14px;
   margin: 14px 0;
 }
@@ -673,16 +671,12 @@ onUnmounted(() => clearInterval(hrrTimer))
   border-radius: var(--radius);
   padding: 10px;
 }
-.g-card img {
-  width: 100%; display: block;
-  border-radius: 8px; background: #fff;
-}
 .g-card figcaption {
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
-  margin: 8px 2px 4px; font-size: 0.92rem;
+  margin: 8px 2px 4px; font-size: 0.95rem;
 }
 .g-card p {
-  margin: 0 2px; color: var(--text-dim); font-size: 0.82rem; line-height: 1.6;
+  margin: 0 2px; color: var(--text-dim); font-size: 0.85rem; line-height: 1.6;
 }
 .howto li { margin: 5px 0; }
 .quiet-tip {

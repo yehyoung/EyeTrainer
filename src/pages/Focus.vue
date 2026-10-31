@@ -3,6 +3,7 @@ import { ref, computed, watch } from 'vue'
 import { beep, speak } from '../store'
 import { useSession } from '../useSession'
 import ExplainCard from '../components/ExplainCard.vue'
+import PoseImage from '../components/PoseImage.vue'
 import imgAccommodation from '../assets/accommodation.webp'
 
 const tab = ref('chart') // chart=對焦調節圖, finger=手指凝視法
@@ -58,7 +59,7 @@ function startFinger() {
     </p>
 
     <figure class="diagram">
-      <img :src="imgAccommodation" alt="睫狀肌看近與看遠時的對焦原理示意圖" />
+      <PoseImage :src="imgAccommodation" alt="睫狀肌看近與看遠時的對焦原理示意圖" :max="640" />
       <figcaption>
         看近時<strong>睫狀肌收縮</strong>、水晶體變厚；看遠時<strong>睫狀肌放鬆</strong>、水晶體變薄。
         長時間盯螢幕等於讓睫狀肌長期維持在左邊的收縮狀態，這正是眼睛痠脹與假性近視的來源。
@@ -202,12 +203,7 @@ function startFinger() {
   margin: 12px 0;
   text-align: center;
 }
-.diagram img {
-  width: 100%;
-  max-width: 640px;
-  border-radius: 10px;
-  background: #fff;
-}
+.diagram :deep(.pose-img) { margin: 0 auto; }
 .diagram figcaption {
   color: var(--text-dim);
   font-size: 0.9rem;

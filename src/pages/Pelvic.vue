@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { useIntervals } from '../useIntervals'
 import ExplainCard from '../components/ExplainCard.vue'
+import PoseImage from '../components/PoseImage.vue'
 import imgAnatomy from '../assets/pelvic-anatomy.webp'
 
 const MODES = [
@@ -131,7 +132,7 @@ const orbStyle = computed(() => {
     />
 
     <div class="anatomy">
-      <img :src="imgAnatomy" alt="骨盆底肌位置與收縮方向示意圖" />
+      <PoseImage :src="imgAnatomy" alt="骨盆底肌位置與收縮方向示意圖" :max="340" class="pose" />
       <div>
         <h2 style="margin-top: 0">骨盆底肌在哪裡？</h2>
         <p style="color: var(--text-dim); font-size: 0.93rem">
@@ -230,13 +231,7 @@ const orbStyle = computed(() => {
   padding: 18px;
   margin: 12px 0;
 }
-.anatomy img {
-  width: 260px;
-  flex: none;
-  border-radius: 10px;
-  background: #fff;
-  border: 1px solid var(--border);
-}
+.anatomy .pose { width: 340px; max-width: 100%; flex: none; }
 .anatomy > div { flex: 1; min-width: 260px; }
 .anatomy p { margin: 8px 0; }
 

@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { useIntervals } from '../useIntervals'
 import { beep, speak } from '../store'
 import ExplainCard from '../components/ExplainCard.vue'
+import PoseImage from '../components/PoseImage.vue'
 import imgWallSquat from '../assets/wall-squat.webp'
 import imgPlank from '../assets/plank.webp'
 import imgChestPress from '../assets/chest-press.webp'
@@ -303,7 +304,7 @@ const phaseColor = computed(() => {
       <div class="side">
         <h2 style="margin-top: 0">{{ ex.emoji }} {{ ex.name }}</h2>
         <div class="howto-row">
-          <img :src="ex.img" :alt="`${ex.name}姿勢示意圖`" class="pose" />
+          <PoseImage :src="ex.img" :alt="`${ex.name}姿勢示意圖`" :max="340" class="pose" />
           <ol class="howto">
             <li v-for="(s, i) in ex.steps" :key="i">{{ s }}</li>
           </ol>
@@ -345,13 +346,7 @@ const phaseColor = computed(() => {
 .phase { color: var(--text-dim); font-size: 0.9rem; margin-top: 8px; }
 .side { flex: 1; min-width: 260px; }
 .howto-row { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
-.pose {
-  width: 210px;
-  flex: none;
-  border-radius: 10px;
-  background: #fff;
-  border: 1px solid var(--border);
-}
+.pose { width: 340px; max-width: 100%; flex: none; }
 .howto {
   flex: 1;
   min-width: 220px;
