@@ -22,6 +22,7 @@ const EXERCISES = [
     img: imgAnkle,
     where: '躺著或坐著',
     foot: true,
+    cue: { up: '腳尖勾起', down: '腳尖下壓', upWord: '勾起', downWord: '下壓' },
     up: 3, down: 3, reps: 15, sets: 2, rest: 30,
     note: '術後預防血栓最常開的運動處方，躺在床上就能做。動作慢、幅度做到底，比做得快重要得多。',
     steps: [
@@ -38,6 +39,7 @@ const EXERCISES = [
     img: imgDesk,
     where: '坐在辦公椅上',
     foot: true,
+    cue: { up: '腳尖翹高', down: '腳跟抬高', upWord: '翹腳尖', downWord: '抬腳跟' },
     up: 2, down: 2, reps: 20, sets: 2, rest: 20,
     note: '開會、打字時桌子底下就能做，旁人看不出來。久坐族最該養成的習慣：每 30 分鐘做 20 下。',
     steps: [
@@ -54,6 +56,9 @@ const EXERCISES = [
     img: imgCalf,
     where: '站著，手扶牆或椅背',
     foot: true,
+    // 站姿只做蹠屈（踮腳），不會勾腳，腳踝動畫從中立位開始
+    plantarOnly: true,
+    cue: { up: '腳跟抬高', down: '慢慢放下', upWord: '抬起', downWord: '放下' },
     up: 2, down: 3, reps: 15, sets: 3, rest: 45,
     note: '站姿提踵要對抗全身體重，是把小腿肌肉泵「練強」最有效的動作。放下時刻意放慢，離心階段才是練肌力的重點。',
     steps: [
@@ -177,10 +182,7 @@ function buildPlan() {
   }
 
   // 踝泵 / 坐姿交替 / 提踵：一上一下算一次
-  const upSay = e.id === 'calf' ? '腳跟抬高' : '腳尖勾起'
-  const downSay = e.id === 'calf' ? '慢慢放下' : '腳尖下壓'
-  const upWord = e.id === 'calf' ? '抬起' : '勾起'
-  const downWord = e.id === 'calf' ? '放下' : '下壓'
+  const { up: upSay, down: downSay, upWord, downWord } = e.cue
   const plan = [
     { kind: 'prep', label: '準備', seconds: 8, say: `準備${e.name}。${e.where}`, freq: 520 },
   ]
@@ -249,19 +251,21 @@ const footAngle = computed(() => {
   const ramp = Math.min(0.9, c.seconds * 0.5) // 轉到定位所需秒數
   const t = Math.min(1, session.elapsed.value / ramp)
   const eased = t * t * (3 - 2 * t) // smoothstep
-  const lo = exId.value === 'calf' ? 0 : DORSI
-  const hi = PLANTAR
-  // 勾起（up）：踝泵往背屈跑、提踵往蹠屈跑；下壓（down）則相反
-  const from = c.kind === 'up' ? (exId.value === 'calf' ? lo : hi) : (exId.value === 'calf' ? hi : lo)
-  const to = c.kind === 'up' ? (exId.value === 'calf' ? hi : lo) : (exId.value === 'calf' ? lo : hi)
+  const plantarOnly = !!ex.value.plantarOnly
+  const lo = plantarOnly ? 0 : DORSI
+  // 「上」對提踵是踮起（蹠屈），對踝泵與坐姿交替則是勾腳（背屈），方向相反
+  const top = plantarOnly ? PLANTAR : lo
+  const bottom = plantarOnly ? lo : PLANTAR
+  const from = c.kind === 'up' ? bottom : top
+  const to = c.kind === 'up' ? top : bottom
   return from + (to - from) * eased
 })
 
 const footLabel = computed(() => {
   const k = session.current.value?.kind
-  const calf = exId.value === 'calf'
-  if (k === 'up') return calf ? '⬆️ 腳跟抬高' : '⬆️ 腳尖勾起'
-  if (k === 'down') return calf ? '⬇️ 慢慢放下' : '⬇️ 腳尖下壓'
+  const cue = ex.value.cue
+  if (cue && k === 'up') return `⬆️ ${cue.up}`
+  if (cue && k === 'down') return `⬇️ ${cue.down}`
   return '跟著節奏做，幅度做到底'
 })
 
