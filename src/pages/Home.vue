@@ -61,6 +61,11 @@ import { streak, todaySeconds } from '../store'
         <h3>安靜燃脂</h3>
         <p>無跳躍高強度間歇：在家幾分鐘就讓心跳飆升、流一身汗，而且樓下聽不到。含心率恢復測量。</p>
       </router-link>
+      <router-link class="card" to="/veins">
+        <div class="icon">🩸</div>
+        <h3>腿部靜脈回流</h3>
+        <p>小腿肌肉泵訓練：踝泵、提踵、抬腿與伸展，改善久坐造成的腿部痠脹、腫脹與靜脈曲張症狀。</p>
+      </router-link>
       <router-link class="card" to="/pelvic">
         <div class="icon">🌸</div>
         <h3>骨盆底肌訓練</h3>

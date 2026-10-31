@@ -16,6 +16,7 @@ const MODULE_NAMES = {
   isometric: '💪 等長運動',
   cardio: '🔥 安靜燃脂',
   'cardio-hrr': '❤️ 心率恢復',
+  veins: '🩸 靜脈回流',
   pelvic: '🌸 骨盆底肌',
   autonomic: '🫁 自律神經',
 }
@@ -87,6 +88,10 @@ function confirmClear() {
             <template v-else-if="r.module === 'cardio' && r.extra?.programme">
               {{ r.extra.programme }} {{ r.extra.work }}/{{ r.extra.rest }} 秒 ×
               {{ r.extra.rounds }} 輪（{{ Math.round(r.seconds / 60 * 10) / 10 }} 分）
+            </template>
+            <template v-else-if="r.module === 'veins' && r.extra?.exercise">
+              {{ r.extra.exercise }}{{ r.extra.minutes ? ' ' + r.extra.minutes + ' 分鐘'
+                : r.extra.reps ? ' ' + r.extra.reps + ' 次 × ' + r.extra.sets + ' 組' : '' }}（{{ r.seconds }} 秒）
             </template>
             <template v-else-if="r.module === 'cardio-hrr'">
               {{ r.extra?.hr1 }} → {{ r.extra?.hr2 }}，一分鐘下降 {{ r.extra?.drop }} 下

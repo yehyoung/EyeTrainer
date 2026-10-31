@@ -58,6 +58,23 @@ function resetRisk() {
       它沿著樓板結構直接傳遞，瑜珈墊只能衰減有限，唯一可靠的做法就是從源頭不產生衝擊。
     </p>
 
+    <h2>靜脈回流在練什麼？</h2>
+    <p style="color: var(--text-dim)">
+      血液送到腳底之後，回程要逆著重力往上走，而這一段幾乎不靠心臟——靠的是<strong>小腿肌肉泵</strong>：
+      小腿每收縮一次就擠壓深層靜脈把血往上推，靜脈內的單向瓣膜則負責在肌肉放鬆時關起來、不讓血液往下掉。
+      久坐久站時小腿長時間不收縮，血液滯留、靜脈壓偏高，管壁被撐大、瓣膜關不緊，血液逆流後壓力又更高，
+      形成會自我強化的惡性循環，也就是靜脈曲張。<strong>膝窩</strong>特別常見，是因為小隱靜脈正好在這裡匯入深層的膕靜脈，
+      本身就是壓力集中的轉折點，加上坐姿時椅緣常壓在大腿後側與膝窩。
+    </p>
+    <p style="color: var(--text-dim)">
+      期待要說清楚：<strong>運動不會讓已經曲張的血管消失</strong>。瓣膜被撐壞是結構性損傷，不會因訓練而復原。
+      Padberg 等人 2004 年的隨機對照試驗讓患者做 6 個月小腿肌力訓練，小腿泵的射出分率與肌力確實顯著改善，
+      但靜脈逆流本身沒有改變，生活品質與疾病嚴重度評分也沒有跟著進步；2023 年的 Cochrane 回顧
+      （5 篇試驗、146 人）結論更保守，認為證據仍不足以判定運動對慢性靜脈疾病的好處。
+      所以本站把它定位成<strong>日常保養</strong>：成本低、沒有副作用、順便練到小腿肌力與踝關節活動度，
+      但不能取代醫療評估。
+    </p>
+
     <h2>自律神經調節在練什麼？</h2>
     <p style="color: var(--text-dim)">
       自律神經由<strong>交感</strong>（油門）與<strong>副交感</strong>（煞車）組成，久坐與長期壓力會讓交感持續過度活躍，
@@ -84,6 +101,10 @@ function resetRisk() {
       近期眼部手術或正在服用光敏感藥物，請略過該項目。明暗交替的亮暗相都在 10 秒以上、
       屬緩慢交替而非閃爍，但有光敏性癲癇病史者仍請避免。本頁的測量不是臨床檢查，
       只能與自己過去在相同螢幕與相同房間亮度下的紀錄比較，不可用於自我診斷。<br /><br />
+      ⚠️ <strong>靜脈回流訓練</strong>：若<strong>單側</strong>小腿突然腫脹、發熱、壓痛，可能是深層靜脈栓塞（DVT），
+      請立即就醫，不要按摩也不要先做運動。膝窩摸到腫塊不一定是靜脈曲張——貝克氏囊腫、小隱靜脈瘤、
+      膕動脈瘤都長在同一個位置，需要超音波才能分辨。皮膚變硬變色、反覆濕疹或有不易癒合的傷口，
+      請掛心臟血管外科。<br /><br />
       ⚠️ <strong>呼吸練習</strong>：出現頭暈、手腳發麻或刺痛代表換氣過度，請立即停止並回到自然呼吸。
       含屏息的技巧若您懷孕、有心血管疾病、癲癇病史或正在恐慌發作，請縮短或略過屏息段落。
     </div>
@@ -123,6 +144,12 @@ function resetRisk() {
       <li><a href="https://pubmed.ncbi.nlm.nih.gov/10536127/" target="_blank">Cole et al., NEJM 1999：運動後心率恢復與死亡率（HRR₁ 12 下門檻的出處）</a></li>
       <li><a href="https://pubmed.ncbi.nlm.nih.gov/8897392/" target="_blank">Tabata et al., 1996：中強度持續訓練與高強度間歇訓練的比較（20/10 間歇的原始研究）</a></li>
       <li><a href="https://www.acefitness.org/resources/everyone/blog/3791/everything-you-need-to-know-about-tabata-training/" target="_blank">ACE：Tabata 訓練的原始方案與常見誤解</a></li>
+      <li><a href="https://pubmed.ncbi.nlm.nih.gov/14718821/" target="_blank">Padberg et al., 2004：結構化運動改善慢性靜脈功能不全的小腿肌肉泵功能（隨機對照試驗）</a></li>
+      <li><a href="https://pubmed.ncbi.nlm.nih.gov/28873064/" target="_blank">2017 系統性回顧與統合分析：運動對小腿肌肉泵射出分率的效果</a></li>
+      <li><a href="https://www.cochrane.org/CD010637/PVD_can-physical-exercise-improve-blood-flow-through-veins" target="_blank">Cochrane：運動能否改善慢性靜脈疾病（證據仍不足）</a></li>
+      <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8147883/" target="_blank">系統性回顧：運動訓練對小腿泵功能、肌力、踝關節活動度與生活品質的影響</a></li>
+      <li><a href="https://www.cochrane.org/CD008819/PVD_compression-stockings-initial-treatment-varicose-veins-patients-without-venous-ulceration" target="_blank">Cochrane：彈性襪作為靜脈曲張初始治療的證據回顧</a></li>
+      <li><a href="https://www.nice.org.uk/guidance/cg168/chapter/Recommendations" target="_blank">NICE CG168：下肢靜脈曲張的診斷與處置指引（含轉診時機）</a></li>
     </ul>
 
     <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 16px">
