@@ -183,6 +183,8 @@ watch([aPoints, adaptMin, aPhase, aCurve], () => nextTick(drawCurve), { immediat
 // ============================================================
 // B. 明暗交替適應（調節靈活度 ＋ 瞳孔反射）
 // ============================================================
+// 暖白（低藍光）的亮適應底色；A 的亮適應固定用 mid，因為它的用途是「統一起點」，
+// 不該跟著 B 的亮度選項跑掉
 const BRIGHT_BG = { low: '#9b8d6e', mid: '#cdbb93', high: '#f3e4c2' }
 const bReps = ref(5)
 const bBright = ref(15)
@@ -597,7 +599,7 @@ const LIFESTYLE = [
     <div
       ref="aStage"
       class="dark-stage"
-      :style="{ background: aPhase === 'pre' ? BRIGHT_BG[bLevel] : '#000' }"
+      :style="{ background: aPhase === 'pre' ? BRIGHT_BG.mid : '#000' }"
     >
       <div v-if="aPhase === 'pre'" class="pre-note">
         ☀️ 亮適應中，看著畫面…… {{ aClock }}
