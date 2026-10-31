@@ -3,11 +3,38 @@ import { ref, computed, onUnmounted } from 'vue'
 import { useIntervals } from '../useIntervals'
 import { beep, speak, logSession } from '../store'
 import ExplainCard from '../components/ExplainCard.vue'
+import imgMarch from '../assets/march.webp'
+import imgHip from '../assets/hip.webp'
+import imgSlowSquat from '../assets/slowsquat.webp'
+import imgSquat from '../assets/squat.webp'
+import imgSumo from '../assets/sumo.webp'
+import imgLunge from '../assets/lunge.webp'
+import imgSkater from '../assets/skater.webp'
+import imgClimber from '../assets/climber.webp'
+import imgBurpee from '../assets/burpee.webp'
+import imgPushup from '../assets/pushup.webp'
+import imgBear from '../assets/bear.webp'
+import imgWorm from '../assets/worm.webp'
+import imgPunch from '../assets/punch.webp'
+import imgWallSit from '../assets/wall-squat.webp'
+import imgBridge from '../assets/bridge.webp'
+import imgDeadbug from '../assets/deadbug.webp'
+import imgPlank from '../assets/plank.webp'
+import imgCool from '../assets/cool.webp'
+import imgKnee from '../assets/knee.webp'
 
 // ============================================================
 // 動作庫：全部「不跳躍、不跺地」，腳掌永遠有一隻在地面或由雙手承重
 // hr = 心跳拉升力道（1 低 / 2 中 / 3 高），用來排課表
 // ============================================================
+// 動作示意圖：靠牆靜蹲與棒式沿用等長運動頁的同一張圖
+const IMG = {
+  march: imgMarch, hip: imgHip, slowsquat: imgSlowSquat, squat: imgSquat, sumo: imgSumo,
+  lunge: imgLunge, skater: imgSkater, climber: imgClimber, burpee: imgBurpee, pushup: imgPushup,
+  bear: imgBear, worm: imgWorm, punch: imgPunch, wallsit: imgWallSit, bridge: imgBridge,
+  deadbug: imgDeadbug, plank: imgPlank, cool: imgCool, knee: imgKnee,
+}
+
 const MOVES = {
   march: {
     emoji: '🚶', name: '原地踏步加速', hr: 1,
@@ -252,11 +279,8 @@ const totalMin = computed(() => {
   return Math.round((s / 60) * 10) / 10
 })
 
-const move = computed(() => {
-  const c = session.current.value
-  if (c?.moveId) return MOVES[c.moveId]
-  return MOVES[prog.value.moves[0]]
-})
+const moveId = computed(() => session.current.value?.moveId || prog.value.moves[0])
+const move = computed(() => MOVES[moveId.value])
 
 // 休息時側欄顯示的是「下一個」動作，標題要講清楚
 const sideTitle = computed(() => {
@@ -459,9 +483,12 @@ onUnmounted(() => clearInterval(hrrTimer))
           </span>
         </div>
         <h2 style="margin-top: 4px">{{ move.emoji }} {{ move.name }}</h2>
-        <ol class="howto">
-          <li v-for="(s, i) in move.steps" :key="i">{{ s }}</li>
-        </ol>
+        <div class="side-body">
+          <img :src="IMG[moveId]" :alt="`${move.name}動作示意圖`" class="pose" />
+          <ol class="howto">
+            <li v-for="(s, i) in move.steps" :key="i">{{ s }}</li>
+          </ol>
+        </div>
         <div class="quiet-tip">🔇 {{ move.quiet }}</div>
       </div>
     </div>
@@ -497,6 +524,23 @@ onUnmounted(() => clearInterval(hrrTimer))
           以及器材（啞鈴、水瓶）不要放下時撞到地板。
         </p>
       </div>
+    </div>
+
+    <h2>🗂️ 動作圖鑑</h2>
+    <p class="desc" style="margin-top: 0">
+      開始前先掃一遍，訓練中就不用停下來看文字。紅點是心跳拉升的力道。
+    </p>
+    <div class="gallery">
+      <figure v-for="(m, id) in MOVES" :key="id" class="g-card">
+        <img :src="IMG[id]" :alt="`${m.name}動作示意圖`" loading="lazy" />
+        <figcaption>
+          <strong>{{ m.emoji }} {{ m.name }}</strong>
+          <span class="hr-dots">
+            <i v-for="n in 3" :key="n" :class="{ on: n <= m.hr }"></i>
+          </span>
+        </figcaption>
+        <p>🔇 {{ m.quiet }}</p>
+      </figure>
     </div>
 
     <h2>❤️ 一分鐘心率恢復（HRR₁）</h2>
@@ -603,10 +647,42 @@ onUnmounted(() => clearInterval(hrrTimer))
   background: var(--border); display: block;
 }
 .hr-dots i.on { background: var(--bad); }
+.side-body {
+  display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; margin-top: 8px;
+}
+.pose {
+  width: 200px; flex: none;
+  border-radius: 10px; background: #fff; border: 1px solid var(--border);
+}
 .howto {
-  margin: 8px 0 12px 20px;
+  flex: 1; min-width: 220px;
+  margin: 0 0 12px 20px;
   color: var(--text-dim);
   font-size: 0.92rem;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+.g-card {
+  margin: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+}
+.g-card img {
+  width: 100%; display: block;
+  border-radius: 8px; background: #fff;
+}
+.g-card figcaption {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  margin: 8px 2px 4px; font-size: 0.92rem;
+}
+.g-card p {
+  margin: 0 2px; color: var(--text-dim); font-size: 0.82rem; line-height: 1.6;
 }
 .howto li { margin: 5px 0; }
 .quiet-tip {
