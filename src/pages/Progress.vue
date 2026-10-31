@@ -9,6 +9,10 @@ const MODULE_NAMES = {
   stereo: '🌀 3D 立體圖',
   'relax-blink': '👁️ 節拍眨眼',
   'relax-palm': '🤲 掌心熱敷',
+  'dark-adapt': '🌑 暗適應階梯',
+  'dark-switch': '🔄 明暗交替',
+  'dark-periph': '👀 餘光偵測',
+  'dark-glare': '💡 眩光恢復',
   isometric: '💪 等長運動',
   pelvic: '🌸 骨盆底肌',
   autonomic: '🫁 自律神經',
@@ -77,6 +81,15 @@ function confirmClear() {
             </template>
             <template v-else-if="r.module === 'pelvic' && r.extra?.mode">
               {{ r.extra.mode }} × {{ r.extra.reps }} 次（{{ r.seconds }} 秒）
+            </template>
+            <template v-else-if="r.module === 'dark-adapt'">
+              暗適應 {{ r.extra?.minutes }} 分鐘，最暗看到第 {{ r.extra?.best || '—' }} 格
+            </template>
+            <template v-else-if="r.module === 'dark-periph'">
+              答對 {{ r.extra?.correct }}/{{ r.extra?.trials }}，偵測極限灰階 {{ r.extra?.threshold ?? '—' }}
+            </template>
+            <template v-else-if="r.module === 'dark-glare'">
+              眩光恢復 {{ r.extra?.recovery ?? r.seconds }} 秒
             </template>
             <template v-else-if="r.module === 'autonomic' && r.extra?.method">
               {{ r.extra.method }}{{ r.extra.preset ? '・' + r.extra.preset : '' }}（{{ r.seconds }} 秒）

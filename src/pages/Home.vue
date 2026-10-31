@@ -42,6 +42,11 @@ import { streak, todaySeconds } from '../store'
         <h3>放鬆休息</h3>
         <p>20-20-20 護眼提醒、節拍眨眼訓練、掌心熱敷（palming）引導。</p>
       </router-link>
+      <router-link class="card" to="/dark">
+        <div class="icon">🌙</div>
+        <h3>暗適應與明暗調節</h3>
+        <p>改善暗處看不清、明暗切換慢、夜間被車燈閃到恢復不了：暗適應階梯、明暗交替、餘光偵測與眩光恢復計時。</p>
+      </router-link>
     </div>
 
     <h2>💪 身體訓練</h2>

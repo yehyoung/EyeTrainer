@@ -21,6 +21,7 @@ function resetRisk() {
       <li><strong>遠近變焦</strong>：交替看近與看遠，讓睫狀肌收縮—放鬆循環，緩解調節痙攣。</li>
       <li><strong>3D 立體圖</strong>：平行法讓對焦點落在螢幕後方，是螢幕上少數能真正「看遠」的方式。</li>
       <li><strong>放鬆休息</strong>：20-20-20、眨眼與熱敷，是眼科醫師最一致推薦的保健方式。</li>
+      <li><strong>暗適應</strong>：練的不是視紫質的化學速度（那無法加快），而是用對餘光、不自己破壞暗適應，並留下可追蹤的基準線。</li>
     </ul>
 
     <h2>誠實的期待管理</h2>
@@ -28,6 +29,18 @@ function resetRisk() {
       眼球訓練<strong>無法治療真性近視</strong>——已拉長的眼軸不會因訓練縮短。
       它的價值在於：放鬆緊繃的睫狀肌（改善假性近視與視疲勞）、緩解電腦視覺症候群、
       維持眼球運動的靈活度。若視力持續惡化，請以眼科診療為準。
+    </p>
+
+    <h2>暗適應在練什麼？</h2>
+    <p style="color: var(--text-dim)">
+      視網膜有兩套感光細胞：<strong>視錐細胞</strong>負責明亮與顏色，約 5–10 分鐘就完成適應；
+      <strong>視桿細胞</strong>負責微光，必須等<strong>視紫質（rhodopsin）</strong>重新合成，
+      敏感度要爬升 20–30 分鐘才飽和，兩段曲線交接處就是教科書上的「rod–cone break」。
+      這個化學速度<strong>無法靠練習加快</strong>——所以暗適應模組做的是另外三件事：
+      教你用<strong>餘光</strong>（視桿密度高峰在離中心 15–20 度，中心小凹幾乎沒有視桿，
+      暗處直視等於把目標放在最不敏感的位置）、避免用亮光自己把暗適應歸零、
+      以及用「眩光恢復計時」留下自己的基準線。暗適應明顯變慢是早期年齡相關性巨斑部病變、
+      視網膜色素病變與維生素 A 缺乏的共同徵兆，及早發現比練習更有價值。
     </p>
 
     <h2>身體訓練在練什麼？</h2>
@@ -56,6 +69,10 @@ function resetRisk() {
       務必全程正常呼吸；有高血壓、心血管疾病、青光眼或視網膜病變者請先諮詢醫師。<br /><br />
       ⚠️ <strong>骨盆底肌訓練</strong>：請勿反覆以「中斷尿流」作為練習方式。放鬆與收縮同樣重要，
       過度訓練可能造成骨盆底肌過度緊繃而引起疼痛或排尿困難；有骨盆疼痛或復健需求請諮詢專業人員。<br /><br />
+      ⚠️ <strong>暗適應與眩光測試</strong>：眩光恢復計時會出現短暫強光，若有視網膜病變、偏頭痛畏光、
+      近期眼部手術或正在服用光敏感藥物，請略過該項目。明暗交替的亮暗相都在 10 秒以上、
+      屬緩慢交替而非閃爍，但有光敏性癲癇病史者仍請避免。本頁的測量不是臨床檢查，
+      只能與自己過去在相同螢幕與相同房間亮度下的紀錄比較，不可用於自我診斷。<br /><br />
       ⚠️ <strong>呼吸練習</strong>：出現頭暈、手腳發麻或刺痛代表換氣過度，請立即停止並回到自然呼吸。
       含屏息的技巧若您懷孕、有心血管疾病、癲癇病史或正在恐慌發作，請縮短或略過屏息段落。
     </div>
@@ -87,6 +104,11 @@ function resetRisk() {
       <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5575449/" target="_blank">共振頻率呼吸對 HRV、血壓與情緒的影響</a></li>
       <li><a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2021.624254/full" target="_blank">Frontiers：各種呼吸技巧對 HRV 的效果比較</a></li>
       <li><a href="https://tanss.org.tw/qa/" target="_blank">台灣自律神經失調症協會：常見問題</a></li>
+      <li><a href="https://webvision.med.utah.edu/book/part-viii-gabac-receptors/light-and-dark-adaptation/" target="_blank">Webvision（猶他大學）：Light and Dark Adaptation 明暗適應</a></li>
+      <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK11525/" target="_blank">Neuroscience（NCBI Bookshelf）：視錐與視桿的適應時程</a></li>
+      <li><a href="https://eandv.biomedcentral.com/articles/10.1186/s40662-016-0060-8" target="_blank">Eye and Vision：葉黃素與玉米黃素補充對眩光下視覺表現與眩光恢復的隨機對照試驗</a></li>
+      <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11809839/" target="_blank">維生素 A 缺乏與夜盲：視紫質再生障礙的機制與病例</a></li>
+      <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10779901/" target="_blank">夜間近視（night myopia）的成因：暗焦點、球面與色差</a></li>
     </ul>
 
     <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 16px">

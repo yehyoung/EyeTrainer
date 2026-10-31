@@ -10,6 +10,7 @@ import SafetyModal from './components/SafetyModal.vue'
     <router-link to="/focus" class="link">遠近變焦</router-link>
     <router-link to="/stereo" class="link">3D 立體圖</router-link>
     <router-link to="/relax" class="link">放鬆休息</router-link>
+    <router-link to="/dark" class="link">暗適應</router-link>
     <span class="nav-sep"></span>
     <router-link to="/isometric" class="link">等長運動</router-link>
     <router-link to="/pelvic" class="link">骨盆底肌</router-link>
